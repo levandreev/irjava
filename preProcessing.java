@@ -5,26 +5,26 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+//import java.nio.file.Files;
+//import java.nio.file.Paths;
+//import java.util.ArrayList;
+//import java.util.LinkedList;
+//import java.util.List;
+//import java.util.Properties;
+//
+//import edu.stanford.nlp.ling.CoreLabel;
+//import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
+//import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+//import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
+//import edu.stanford.nlp.pipeline.Annotation;
+//import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+//import edu.stanford.nlp.util.CoreMap;
 
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
-import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
-import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.util.CoreMap;
-import lemmatization.StanfordLemmatizer;
 
 
 public class preProcessing {
 	public static void readFileContent(String directoryName, String folderName, String fileName, String newDirectoryAddress){
-		String docAddress = directoryName + folderName + "/" + fileName;
+		String docAddress = directoryName +"\\"+ folderName + "\\" + fileName;
 		try {
 			File file = new File(docAddress);
 			FileReader fileReader = new FileReader(file);
@@ -39,10 +39,10 @@ public class preProcessing {
 			//System.out.println(stringBuffer.toString());
 			StanfordLemmatizer lem = new StanfordLemmatizer();
 
-			File newFile = new File(newDirectoryAddress + "/" + folderName);
+			File newFile = new File(newDirectoryAddress + "\\" + folderName);
 			newFile.mkdir();
 			newFile.createNewFile();
-			PrintWriter writer = new PrintWriter(newDirectoryAddress + "/" + folderName + "/" + fileName, "UTF-8");
+			PrintWriter writer = new PrintWriter(newDirectoryAddress + "\\" + folderName + "\\" + fileName, "UTF-8");
 		    writer.println(lem.lemmatize(stringBuffer.toString()));
 		    writer.close();
 		} catch (IOException e) {
@@ -53,9 +53,14 @@ public class preProcessing {
 	public static void readFileAndDirectoryNames(String directoryName, String newDirectoryAddress){
 		File rootfolder = new File(directoryName);
 		File[] listOfFolders = rootfolder.listFiles();
+	
 	    for (int i = 0; i < listOfFolders.length; i++) {
-			File innerfolder = new File(directoryName + listOfFolders[i].getName());
+	  
+			File innerfolder = new File(directoryName +"\\"+ listOfFolders[i].getName());
+			System.out.println(innerfolder.toString());
+//			System.out.println(innerfolder.listFiles());
 			File[] listOfFiles = innerfolder.listFiles();
+			
 			for (int j=0; j<listOfFiles.length; j++){
 				readFileContent(directoryName , listOfFolders[i].getName() , listOfFiles[j].getName(), newDirectoryAddress);
 			}
@@ -63,14 +68,15 @@ public class preProcessing {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String newDirectoryAddress = "/home/farbod/Dokumente/University/"
-				+ "Courses/Information Retrieval and Web Search/Project/Data Set/PreProcessedDataSet";
-		String rootDirectoryAddress = "/home/farbod/Dokumente/University/"
-				+ "Courses/Information Retrieval and Web Search/Project/Data Set/20_newsgroups/";
+		String newDirectoryAddress = "C:\\Users\\Win 10\\Desktop\\output_20";
+		String rootDirectoryAddress = "C:\\Users\\Win 10\\Desktop\\test_20";
 		
 		File newFile = new File(newDirectoryAddress);
 		newFile.mkdir();
 		newFile.createNewFile();
 		readFileAndDirectoryNames(rootDirectoryAddress,newDirectoryAddress);	
+		
+		
+		
 		}
 	}
