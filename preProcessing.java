@@ -24,7 +24,7 @@ import java.io.PrintWriter;
 
 public class preProcessing {
 	public static void readFileContent(String directoryName, String folderName, String fileName, String newDirectoryAddress){
-		String docAddress = directoryName +"\\"+ folderName + "\\" + fileName;
+		String docAddress = directoryName + folderName + "\\" + fileName;
 		try {
 			File file = new File(docAddress);
 			FileReader fileReader = new FileReader(file);
@@ -56,7 +56,7 @@ public class preProcessing {
 	
 	    for (int i = 0; i < listOfFolders.length; i++) {
 	  
-			File innerfolder = new File(directoryName +"\\"+ listOfFolders[i].getName());
+			File innerfolder = new File(directoryName + listOfFolders[i].getName());
 			System.out.println(innerfolder.toString());
 //			System.out.println(innerfolder.listFiles());
 			File[] listOfFiles = innerfolder.listFiles();
@@ -68,8 +68,8 @@ public class preProcessing {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String newDirectoryAddress = "C:\\Users\\Win 10\\Desktop\\output_20";
-		String rootDirectoryAddress = "C:\\Users\\Win 10\\Desktop\\test_20";
+		String newDirectoryAddress = "C:\\Users\\Dota\\Desktop\\output_20\\";
+		String rootDirectoryAddress = "C:\\Users\\Dota\\Desktop\\20_newsgroups\\";
 		
 		File newFile = new File(newDirectoryAddress);
 		newFile.mkdir();

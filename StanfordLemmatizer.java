@@ -14,11 +14,11 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
-public class StanfordLemmatizer { 
+public class StanfordLemmatizer {
+	
 protected StanfordCoreNLP pipeline; 
-
 	public static int checkStopWord(String text) throws IOException{
-		String stopWordListAddress = "\\Users\\Win 10\\Desktop\\stopwordlist";
+		String stopWordListAddress = "C:/Users/Dota/Desktop/stopwordlist.txt";
 		ArrayList<String> StopWordsList = new ArrayList<String>();
 		StopWordsList = (ArrayList<String>) Files.readAllLines(Paths.get(stopWordListAddress));
 		int checkStopWord =0;
