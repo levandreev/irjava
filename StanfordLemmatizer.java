@@ -16,7 +16,8 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class StanfordLemmatizer {
 	
-protected StanfordCoreNLP pipeline; 
+protected StanfordCoreNLP pipeline;
+
 	public static int checkStopWord(String text) throws IOException{
 		String stopWordListAddress = "C:/Users/Dota/Desktop/stopwordlist.txt";
 		ArrayList<String> StopWordsList = new ArrayList<String>();
