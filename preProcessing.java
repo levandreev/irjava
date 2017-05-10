@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 public class preProcessing {
 	public static void readFileContent(String directoryName, String folderName, String fileName, String newDirectoryAddress){
 		String docAddress = directoryName + folderName + "\\" + fileName;
+		System.out.println("s");
 		try {
 			File file = new File(docAddress);
 			FileReader fileReader = new FileReader(file);
