@@ -19,7 +19,7 @@ public class StanfordLemmatizer {
 protected StanfordCoreNLP pipeline;
 
 	public static int checkStopWord(String text) throws IOException{
-		String stopWordListAddress = "C:/Users/Dota/Desktop/stopwordlist.txt";
+		String stopWordListAddress = "C:/Users/Win 10/Desktop/stopwordlist.txt";
 		ArrayList<String> StopWordsList = new ArrayList<String>();
 		StopWordsList = (ArrayList<String>) Files.readAllLines(Paths.get(stopWordListAddress));
 		int checkStopWord =0;

@@ -22,11 +22,17 @@ import java.io.PrintWriter;
 
 
 
-public class preProcessing {
+public class preProcessing implements Runnable{
+	
+	String rootStart;
+	public preProcessing(String rootStart) {
+		this.rootStart = rootStart;
+	}
+
 	public static void readFileContent(String directoryName, String folderName, String fileName, String newDirectoryAddress){
 		String docAddress = directoryName + folderName + "\\" + fileName;
 		try {
-			System.out.println("test");
+			System.out.println(Thread.currentThread().getName());
 			File file = new File(docAddress);
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -69,15 +75,24 @@ public class preProcessing {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String newDirectoryAddress = "C:\\Users\\Dota\\Desktop\\output_20\\";
-		String rootDirectoryAddress = "C:\\Users\\Dota\\Desktop\\20_newsgroups\\";
+		String newDirectoryAddress = "C:\\Users\\Win 10\\Desktop\\output_20\\";
+//		String rootDirectoryAddress = "C:\\Users\\Dota\\Desktop\\20_newsgroups\\";
 		
 		File newFile = new File(newDirectoryAddress);
 		newFile.mkdir();
 		newFile.createNewFile();
-		readFileAndDirectoryNames(rootDirectoryAddress,newDirectoryAddress);	
-		
-		
-		
+		preProcessing p1 = new preProcessing("C:\\Users\\Win 10\\Desktop\\test_20\\");
+		preProcessing p2 = new preProcessing("C:\\Users\\Win 10\\Desktop\\test_21\\");
+		Thread t1 = new Thread(p1);
+		Thread t2 = new Thread(p2);
+		t1.start();
+		t2.start();
+
+//		readFileAndDirectoryNames(rootDirectoryAddress,newDirectoryAddress);	
 		}
+
+	@Override
+	public void run() {
+		readFileAndDirectoryNames(rootStart, "C:\\Users\\Win 10\\Desktop\\output_20\\");
+	}
 	}
